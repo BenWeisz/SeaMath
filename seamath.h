@@ -15,9 +15,20 @@ typedef struct Vector {
     int size;
 } Vector;
 
+typedef struct Matrix {
+    float* data;
+    int m; // Rows
+    int n; // Columns
+} Matrix;
+
 Vector* create_vector(int size);
 void free_vector(Vector* vec);
 Vector* random_vector(int size, float min, float max);
+
+Matrix* create_matrix(int m, int n);
+void free_matrix(Matrix* mat);
+Matrix* random_matrix(int m, int n, float min, float max);
+float get_matrix_element(Matrix* mat, int i, int j);
 
 typedef struct DotTask {
     float* v1;

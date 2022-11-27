@@ -3,6 +3,8 @@
 void init_seamath() {
     time_t t;
     srand((unsigned) time(&t));
+    // Prime the pump
+    rand();
 }
 
 Vector* create_vector(int size) {
@@ -25,6 +27,31 @@ Vector* random_vector(int size, float min, float max) {
     return vec;
 }
 
+Matrix* create_matrix(int m, int n) {
+    Matrix* mat = (Matrix*)malloc(sizeof(Matrix));
+    mat->data = (float*)malloc(sizeof(float) * m * n);
+    mat->m = m;
+    mat->n = n;
+    return mat;
+}
+
+void free_matrix(Matrix* mat) {
+    free(mat->data);
+    free(mat);
+}
+
+Matrix* random_matrix(int m, int n, float min, float max) {
+    Matrix* mat = create_matrix(m, n);
+    float max_min = max - min;
+    for (int i = 0; i < m * n; i++)
+        mat->data[i] = (((float)rand() / RAND_MAX) * max_min) + min;
+    return mat;
+}
+
+float get_matrix_element(Matrix* mat, int i, int j) {
+    return mat->data[(i * mat->n) + j];
+}
+
 void *__dot(void *arg) {
     DotTask* task = (DotTask*)arg;
     int partition_size = task->size / task->threads_used;
@@ -40,6 +67,7 @@ void *__dot(void *arg) {
         result += task->v1[i] * task->v2[i];
 
     task->result = result;
+
     pthread_exit(NULL);
 }
 

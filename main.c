@@ -7,32 +7,38 @@
 int main() {
     init_seamath();
 
-    int N = 10000000;
+    Matrix* mat1 = random_matrix(3, 3, 0, 1);
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++)
+            printf("%f ", get_matrix_element(mat1, i, j));
+    }
 
-    Vector* v1 = random_vector(N, 0, 10);
-    Vector* v2 = random_vector(N, 0, 10);
+        // int N = 10000000;
 
-    clock_t start, end;
+        // Vector* v1 = random_vector(N, 0, 10);
+        // Vector* v2 = random_vector(N, 0, 10);
 
-    start = clock();
-    float r = dot(v1, v2);
-    end = clock();
+        // clock_t start, end;
 
-    double time_taken = (double)(end - start);
+        // start = clock();
+        // float r = dot(v1, v2);
+        // end = clock();
 
-    printf("%f\n", time_taken);
+        // double time_taken = (double)(end - start);
 
-    start = clock();
-    float res = 0.0;
-    for (int i = 0; i < N; i++)
-        res += v1->data[i] * v2->data[i];
-    end = clock();
+        // printf("%f\n", time_taken);
 
-    time_taken = (double)(end - start);
+        // start = clock();
+        // float res = 0.0;
+        // for (int i = 0; i < N; i++)
+        //     res += v1->data[i] * v2->data[i];
+        // end = clock();
 
-    printf("%f\n", time_taken);
+        // time_taken = (double)(end - start);
 
-    free_vector(v1);
-    free_vector(v2);
-    return 0;
+        // printf("%f\n", time_taken);
+
+        // free_vector(v1);
+        // free_vector(v2);
+        return 0;
 }
