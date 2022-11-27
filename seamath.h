@@ -39,6 +39,18 @@ typedef struct DotTask {
     float result;
 } DotTask;
 
+typedef struct MatrixVectorMultTask {
+    Matrix* mat;
+    Vector* vec;
+    int thread_id;
+    int threads_used;
+    Vector* result;
+} MatrixVectorMultTask;
+
 float dot(Vector* v1, Vector* v2);
+Vector* matrix_vec_mult(Matrix* mat, Vector* vec);
+
+void print_vector(Vector* vec);
+void print_matrix(Matrix* mat);
 
 #endif
